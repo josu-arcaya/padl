@@ -1,0 +1,12 @@
+version: "1.0"
+pipeline:
+  regressionLineal:
+    model: regression.pfa
+    args:
+      arg1: 2
+      arg2: 3
+    resources:
+      cpus: "1"
+      gpus: "2"
+      memory: "16G"
+      disk: "30G"

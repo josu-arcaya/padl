@@ -1,0 +1,21 @@
+version: "1.0"
+pipeline:
+  decissionTree:
+    model: decissionTree.pfa
+    args:
+      arg1: 2
+      arg2: 3
+    resources:
+      cpus: "1"
+      gpus: "2"
+      memory: "16G"
+    labels:
+      node.security: "high"
+      node.zone: "eu-west"
+    constraints:
+      node:
+        layer: "edge"
+        os: "windows"
+        hostname: "slave01.example.com"
+      model:
+        max_execution_time: 600s

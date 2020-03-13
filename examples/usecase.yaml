@@ -1,0 +1,59 @@
+version: "1.0"
+pipeline:
+  aggregate:
+    model: normalization.pfa
+    type: service
+    constraints:
+      node:
+        layer: "edge"
+    labels:
+      node.type: ipc
+    queues:
+      input: "onpremise"
+      output: "norm"
+  geocross:
+    model: cleaning.pfa
+    type: service
+    contraints:
+      node:
+        layer: "edge"
+    lables:
+      node.type: ipc
+    queues:
+      input: "norm"
+      output: "clean"
+  outliers:
+    model: aggrfreq.pfa
+    type: simple
+    constraints:
+      node:
+        layer: "fog"
+    queues:
+      input: "clean"
+      output: "aggregated"
+  alarms:
+    model: predictive.pfa
+    type: simple
+    resources:
+      cpus: "16G"
+      memory: "64G"
+    queues:
+      input: "aggregated"
+      output: "elastic"
+
+queues:
+  onpremise:
+    format: "local"
+    path: "/opt/XXX/data/*.log"
+  norm:
+    format: "mqtt"
+    path: "mqtt://edge/norm"
+  clean:
+    format: "mqtt"
+    path: "mqtt://edge/clean"
+  aggregated:
+    format: "kafka"
+    path: "kafka://models/aggr"
+  elastic:
+    format: "elastic"
+    path: "http://elk.tecnalia.com:9200/pred"

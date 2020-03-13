@@ -1,0 +1,50 @@
+{
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "id": "infra_schema_v1.0.json",
+  "type": "object",
+  "required": ["version", "resources"],
+
+  "properties": {
+    "version": {
+      "type": "string"
+    },
+
+    "resources": {
+      "id": "#/properties/resourceArray",
+      "type": "array",
+      "items": { "$ref": "#/definitions/resource" }
+    }
+  },
+
+  "definitions": {
+    "resource": {
+      "id": "#/definitions/resource",
+      "type": "object",
+      "required": ["uuid"],
+      "properties": {
+        "uuid": {"type": "string"},
+	"hostname": {
+          "type": "string",
+	  "pattern": "^(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9-]*[a-zA-Z0-9]).)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9-]*[A-Za-z0-9])$"
+	},
+        "resources": {"$ref": "#/definitions/resources"},
+	"labels": {"$ref": "#/definitions/labels"}
+      }
+    },
+
+    "resources": {
+      "id": "#/definitions/resources",
+      "type": "object",
+      "properties": {
+        "cpu": {"type": "integer"},
+	"memory": {"type": "integer"}
+      }
+    },
+
+    "labels": {
+      "id": "#/definitions/labels",
+      "type": "object"
+    }
+  }
+
+}

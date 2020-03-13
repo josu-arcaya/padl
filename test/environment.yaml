@@ -1,0 +1,8 @@
+version: "1.0"
+pipeline:
+  regressionLineal:
+    model: regression.pfa
+    environment:
+      JAVA_HOME: /path/to/JAVA_HOME
+      SCALA_VERSION: 11.2
+      file: my.env

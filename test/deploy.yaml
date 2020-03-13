@@ -1,0 +1,9 @@
+version: "1.0"
+pipeline:
+  regressionLineal:
+    model: regression.pfa
+    deploy:
+      update:
+        on_failure: rollback
+      rollback:
+        on_failure: retry

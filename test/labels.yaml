@@ -1,0 +1,7 @@
+version: "1.0"
+pipeline:
+  regressionLineal:
+    model: regression.pfa
+    labels:
+      node.security: high
+      node.zone: eu-west

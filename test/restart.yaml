@@ -1,0 +1,5 @@
+version: "1.0"
+pipeline:
+  regressionLineal:
+    model: regression.pfa
+    restart: "no"

@@ -1,0 +1,21 @@
+version: "1.0"
+pipeline:
+  unitConverter:
+    model: unitConverter.pfa
+    queues:
+      input: disk
+      output: edge2fog
+  randomForest:
+    model: randomForest.pfa
+    queues:
+      input: disk
+      output: edge2fog
+
+queues:
+  edge2fog:
+    format: avro
+  fog2cloud:
+    format: json
+  disk:
+    format: text
+    path: "/var/log/pgsql/logs/*.log"

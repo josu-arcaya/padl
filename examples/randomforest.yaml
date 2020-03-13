@@ -1,0 +1,14 @@
+version: "1.0"
+pipeline:
+  randomForest:
+    model: randomForest.pfa
+    args:
+      arg1: 2
+      arg2: 3
+    resources:
+      cpus: "1"
+      gpus: "2"
+      memory: "16G"
+    labels:
+      node.security: "high"
+      node.zone: "eu-west"
