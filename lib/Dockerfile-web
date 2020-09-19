@@ -1,0 +1,9 @@
+FROM python:3.7-alpine
+
+WORKDIR /var/www/html
+COPY . /var/www/html/
+RUN pip3 install -r /var/www/html/requirements.txt
+
+EXPOSE 5000
+ENV FLASK_APP /var/www/html/index.py
+CMD ["flask","run", "--host=0.0.0.0"]

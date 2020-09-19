@@ -1,0 +1,142 @@
+{
+  "id": "config_schema_v1.0.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Person",
+  "type": "object",
+  "required": ["version", "pipeline"],
+  "properties": {
+
+    "version": {
+      "type": "string"
+    },
+
+    "pipeline": {
+      "id": "#/properties/pipeline",
+      "type": "object",
+      "patternProperties": {
+        "^[a-zA-Z0-9._-]+$": {
+          "$ref": "#/definitions/modelobj"
+        }
+      }
+    },
+
+    "queues": {
+      "id": "#/properties/queues",
+      "type": "object",
+      "patternProperties": {
+        "^[a-zA-Z0-9._-]+$": {
+          "$ref": "#/definitions/queue"
+        }
+      },
+      "additionalProperties": false
+    }
+
+  },
+
+  "definitions": {
+
+    "modelobj": {
+      "id": "#/definitions/modelobj",
+      "type": "object",
+      "required": ["model"],
+      "properties": {
+        "model": {"type": "string"},
+        "args": {"$ref": "#/definitions/list_or_dict"},
+        "resources": {"$ref": "#/definitions/resources"},
+        "labels": {"$ref": "#/definitions/list_or_dict"},
+        "constraints": {"$ref": "#/definitions/constraints"},
+        "deploy": {"$ref": "#/definitions/deploy"},
+        "environment": {"$ref": "#/definitions/list_or_dict"},
+        "restart": {"$ref": "#/definitions/restart"},
+        "queues": {
+          "type": "object",
+          "properties": {
+            "input": {"type": "string"},
+            "output": {"type": "string"}
+          },
+          "additionalProperties": false
+        }
+      }
+    },
+
+    "resources": {
+      "id": "#/definitions/resources",
+      "type": "object",
+      "properties": {
+        "cpus": {"type": "string"},
+        "gpus": {"type": "string"},
+        "memory": {"type": "string"},
+        "disk": {"type": "string"},
+        "network": {"type": "string"}
+      }
+    },
+
+    "constraints": {
+      "id": "#/definitions/constraints",
+      "type": "object",
+      "properties": {
+        "node": {"$ref": "#/definitions/list_or_dict"},
+        "model": {"$ref": "#/definitions/list_or_dict"}
+      }
+    },
+
+    "deploy": {
+      "id": "#/definitions/deploy",
+      "type": "object",
+      "properties": {
+        "update": {
+          "type": "object",
+          "properties": {
+            "on_failure": {
+              "type": "string",
+              "enum": ["retry", "rollback", "stop"]
+            }
+          }
+        },
+        "rollback": {
+          "type": "object",
+          "properties": {
+            "on_failure": {
+              "type": "string",
+              "enum": ["retry", "stop"]
+            }
+          }
+        }
+      }
+    },
+
+    "restart": {
+      "id": "#/definitions/restart",
+      "type": "string",
+      "enum": ["no", "always", "on-failure"]
+    },
+
+    "queue": {
+      "id": "#/definitions/queue",
+      "type": "object",
+      "properties": {
+        "format": {
+          "type": "string",
+          "enum": ["text", "avro", "json"]
+        },
+        "path": {"type": "string"}
+      }
+    },
+
+    "list_or_dict": {
+      "oneOf": [
+        {
+          "type": "object",
+          "patternProperties": {
+            ".+": {
+              "type": ["string", "number", "null"]
+            }
+          },
+          "additionalProperties": false
+        },
+        {"type": "array", "items": {"type": "string"}, "uniqueItems": true}
+      ]
+    }
+
+  }
+}

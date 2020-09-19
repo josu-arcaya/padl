@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>YAMLlint - The YAML Validator</title>
+</head>
+<body style='font-family:Helvetica'>
+<div id='wrapper' style='width:920px;margin:auto;'>
+<div id='main_content' style='float:left;width:780px;'>
+<h1>PADL Lint</h1>
+<p>PADL Lint is a validator for PADL, a language for deploying analytical pipelines in edge and fog environments.</p>
+<form action="/validate" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="CsGAyePHNQf2G4dLgJsTQk1NGjA0bPKDR9+EN1JosJp2PQ1sTIdnqtRlmIZJFt7J8l+Ldxq8ooGd2CiVcPVclA==" />
+<textarea name="yaml" id="yaml" rows="20" class="lined" style="background-color:#EEEEEE;width:100%">{{ input_padl }}</textarea>
+<input type="submit" name="commit" value="Go" data-disable-with="Go" />
+</form>
+
+<div style='background-color:{{ txt_colour }};color:white;width:100%;padding:10px;'>
+{{ msg }}
+</div>
+</div>
+<div id='adsense' style='height:600px;width:120px;float:left;margin:10px;'>
+</div>
+<div style='clear:both;'></div>
+</div>
+</body>
+</html>
