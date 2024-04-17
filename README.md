@@ -11,7 +11,7 @@ The recommended way to install PADL is by building the corresponding docker imag
 ```bash
 cd lib
 docker build . -f Dockerfile-cli -t padl-cli
-
+docker run padl-cli lint/test/resources/pipeline.yaml
 ```
 
 To utilize the web linter please use the following steps.
@@ -26,8 +26,8 @@ Navigate to localhost:5000 and start validating the PADL documents.
 
 ## Contributing
 
-Contributions are always welcome! Please read the [contribution guidelines]([Contributing to a project - GitHub Docs](https://docs.github.com/en/get-started/exploring-projects-on-github/contributing-to-a-project)) first.
+Contributions are always welcome! Please read the [contribution guidelines](https://docs.github.com/en/get-started/exploring-projects-on-github/contributing-to-a-project) first.
 
 ## License
 
-See the [LICENSE]([padl/LICENSE at master · josu-arcaya/padl · GitHub](https://github.com/josu-arcaya/padl/blob/master/LICENSE)) file for licensing information.
+See the [LICENSE](https://github.com/josu-arcaya/padl/blob/master/LICENSE) file for licensing information.
