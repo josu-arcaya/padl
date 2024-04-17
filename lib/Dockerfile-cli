@@ -2,6 +2,7 @@ FROM python:3.7-alpine
 
 WORKDIR /opt
 COPY . /opt/
+RUN chmod +x /opt/padl.py
 RUN pip3 install -r /opt/requirements.txt
 
-CMD ["/opt/padl.py"]
+ENTRYPOINT ["/opt/padl.py"]
