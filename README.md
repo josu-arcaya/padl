@@ -11,7 +11,6 @@ The recommended way to install PADL is by building the corresponding docker imag
 ```bash
 cd lib
 docker build . -f Dockerfile-cli -t padl-cli
-
 ```
 
 To utilize the web linter please use the following steps.
@@ -23,6 +22,23 @@ docker run -p 5000:5000 padl-web
 ```
 
 Navigate to localhost:5000 and start validating the PADL documents.
+
+## Cite
+
+Please use the following bibtex entry for citing this work.
+
+```latex
+@article{diaz2020padl,
+  title={PADL: A modeling and deployment language for advanced analytical services},
+  author={Diaz-de-Arcaya, Josu and Mi{\~n}{\'o}n, Ra{\'u}l and Torre-Bastida, Ana I and Del Ser, Javier and Almeida, Aitor},
+  journal={Sensors},
+  volume={20},
+  number={23},
+  pages={6712},
+  year={2020},
+  publisher={MDPI}
+}
+```
 
 ## Contributing
 
